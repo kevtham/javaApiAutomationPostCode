@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 public class GetPostCodeResponse {
     private int status;
     private Result result;
+    private String error;
 
     public int getStatus() {
         return status;
@@ -23,6 +24,14 @@ public class GetPostCodeResponse {
 
     public void setResult(Result result) {
         this.result = result;
+    }
+
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
     }
 
 }
