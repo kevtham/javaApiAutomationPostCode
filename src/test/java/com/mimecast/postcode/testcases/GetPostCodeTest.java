@@ -27,7 +27,7 @@ public class GetPostCodeTest extends GetPostCodeService {
     public void test_getPostcode_success() {
 
         // construct url
-        String url = Constants.URL + Constants.FORWARD_SLASH + randomPostService.getRandomPostalCode();
+        String url = Constants.GET_URL + Constants.FORWARD_SLASH + randomPostService.getRandomPostalCode();
         String response = getPostCode(url);
 
         // parse
@@ -48,7 +48,7 @@ public class GetPostCodeTest extends GetPostCodeService {
     public void test_getPostcode_invalid_postcode() {
 
         // construct url
-        String url = Constants.URL + Constants.FORWARD_SLASH + Constants.INVALID_POST_CODE;
+        String url = Constants.GET_URL + Constants.FORWARD_SLASH + Constants.INVALID_POST_CODE;
         String response = getPostCode(url);
 
         // parse
@@ -68,7 +68,7 @@ public class GetPostCodeTest extends GetPostCodeService {
     public void test_getPostcode_no_postcode() {
 
         // construct url
-        String url = Constants.URL + Constants.FORWARD_SLASH;
+        String url = Constants.GET_URL + Constants.FORWARD_SLASH;
         String response = getPostCode(url);
 
         // parse

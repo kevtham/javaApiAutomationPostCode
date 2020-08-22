@@ -27,7 +27,7 @@ public class GetPostCodeWithQueryParamTest extends GetPostCodeService{
     public void test_getPostcode_with_query_param_success() {
 
         // construct url and render random post Code
-        String response = getPostCodeQueryParam(Constants.URL, randomPostService.getRandomPostalCode());
+        String response = getPostCodeQueryParam(Constants.GET_HOST, randomPostService.getRandomPostalCode());
 
         // parse
         GetPostCodeQueryParamResponse postCoderesponse = new Gson().fromJson(response, GetPostCodeQueryParamResponse.class);
