@@ -18,31 +18,33 @@ public class AbstarctRequestDefnitions {
 
     protected HttpClient httpClient;
     final int timeout = 5;
+    HttpResponse response = null;
 
     @Before
-    protected void setUp() {
+    public void setUp() {
         httpClient = HttpClientBuilder.create().setDefaultRequestConfig(setTimeOut()).build();
     }
 
-    protected HttpResponse getResponse(final String uri) {
-        HttpResponse response = null;
+    protected HttpResponse getResponse(final String url) {
+        log.info("Get url is ->" + url);
+
         try {
-            HttpGet getRequest = new HttpGet(uri);
+            HttpGet getRequest = new HttpGet(url.replaceAll(" ", "%20"));
             getRequest.addHeader("accept", "application/json");
 
             response = httpClient.execute(getRequest);
         } catch (Exception e) {
+            e.printStackTrace();
             log.error("Error Occured on Get Call =>" + e.getMessage());
         }
         return response;
     }
 
     protected HttpResponse getResponse(final String url, String postCode) {
-        HttpResponse response = null;
         try {
 
             URIBuilder builder = new URIBuilder();
-            builder.setHost(url).setParameter("q", postCode);
+            builder.setHost(url.replaceAll(" ", "%20")).setParameter("q", postCode);
             URI uri = builder.build();
 
             HttpGet getRequest = new HttpGet(uri);
@@ -56,7 +58,6 @@ public class AbstarctRequestDefnitions {
     }
 
     protected HttpResponse postResponse(final String url, StringEntity entityObj) {
-        HttpResponse response = null;
         try {
             HttpPost request = new HttpPost(url);
             request.addHeader("accept", "application/json");
