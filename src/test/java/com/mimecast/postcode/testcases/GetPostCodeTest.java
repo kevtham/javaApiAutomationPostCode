@@ -12,11 +12,13 @@ import com.mimecast.postcode.common.ErrorMessage;
 import com.mimecast.postcode.common.Validator;
 import com.mimecast.postcode.model.GetPostCodeResponse;
 import com.mimecast.postcode.service.GetPostCodeService;
+import com.mimecast.postcode.service.RandomPostCodeService;
 
 public class GetPostCodeTest extends GetPostCodeService {
 
     final static Logger log = Logger.getLogger(GetPostCodeTest.class);
     Validator validate = new Validator();
+    RandomPostCodeService randomPostService = new RandomPostCodeService();
 
     /*
      * Below test validate the successful scenario.
@@ -25,7 +27,7 @@ public class GetPostCodeTest extends GetPostCodeService {
     public void test_getPostcode_success() {
 
         // construct url
-        String url = Constants.URL + Constants.FORWARD_SLASH + getRandomPostalCode();
+        String url = Constants.URL + Constants.FORWARD_SLASH + randomPostService.getRandomPostalCode();
         String response = getPostCode(url);
 
         // parse
@@ -77,17 +79,5 @@ public class GetPostCodeTest extends GetPostCodeService {
         assertNotNull(postCoderesponse);
         assertEquals(400, postCoderesponse.getStatus());
         assertEquals(ErrorMessage.EMPTY_POST_CODE, postCoderesponse.getError());
-    }
-
-    /*
-     * Below method calls the random postcode endpoint to get the postcode at
-     * runtime.
-     */
-    private String getRandomPostalCode() {
-        String response = getPostCode(Constants.GET_RANDOM_POSTCODE_URL);
-        // parse
-        GetPostCodeResponse postCoderesponse = new Gson().fromJson(response, GetPostCodeResponse.class);
-
-        return postCoderesponse.getResult().getPostcode();
     }
 }
