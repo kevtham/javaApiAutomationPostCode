@@ -41,15 +41,17 @@ public class AbstarctRequestDefnitions {
     }
 
     protected HttpResponse getResponse(final String url, String postCode) {
-        try {
 
+        try {
             URIBuilder builder = new URIBuilder();
-            builder.setHost(url.replaceAll(" ", "%20")).setParameter("q", postCode);
+            builder.setScheme("https").setHost(url).setParameter("q", postCode);
             URI uri = builder.build();
+            log.info("Get url for query param is ->" + uri.toString());
 
             HttpGet getRequest = new HttpGet(uri);
             getRequest.addHeader("accept", "application/json");
 
+            
             response = httpClient.execute(getRequest);
         } catch (Exception e) {
             log.error("Error Occured on Get call using query param =>" + e.getMessage());
