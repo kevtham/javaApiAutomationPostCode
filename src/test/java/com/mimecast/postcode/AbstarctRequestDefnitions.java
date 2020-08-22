@@ -6,11 +6,10 @@ import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URIBuilder;
+import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
-import org.apache.http.params.BasicHttpParams;
-import org.apache.http.params.HttpParams;
-import org.apache.http.params.SyncBasicHttpParams;
 import org.apache.log4j.Logger;
 import org.junit.Before;
 
@@ -51,25 +50,22 @@ public class AbstarctRequestDefnitions {
 
             response = httpClient.execute(getRequest);
         } catch (Exception e) {
-            log.error("Error Occured on Get Call using query param =>" + e.getMessage());
+            log.error("Error Occured on Get call using query param =>" + e.getMessage());
         }
         return response;
     }
 
-    protected HttpResponse postResponse(final String url, String postCode) {
+    protected HttpResponse postResponse(final String url, StringEntity entityObj) {
         HttpResponse response = null;
         try {
+            HttpPost request = new HttpPost(url);
+            request.addHeader("accept", "application/json");
+            request.addHeader("content-type", "application/json");
+            request.setEntity(entityObj);
 
-            URIBuilder builder = new URIBuilder();
-            builder.setHost(url).setParameter("q", postCode);
-            URI uri = builder.build();
-
-            HttpGet getRequest = new HttpGet(uri);
-            getRequest.addHeader("accept", "application/json");
-
-            response = httpClient.execute(getRequest);
+            response = httpClient.execute(request);
         } catch (Exception e) {
-            log.error("Error Occured on Get Call using query param =>" + e.getMessage());
+            log.error("Error Occured on Post call =>" + e.getMessage());
         }
         return response;
     }
