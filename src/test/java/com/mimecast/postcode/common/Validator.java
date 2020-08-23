@@ -1,13 +1,11 @@
 package com.mimecast.postcode.common;
 
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
+import java.util.List;
 import org.apache.log4j.Logger;
-
 import com.mimecast.postcode.model.Codes;
-import com.mimecast.postcode.model.GetPostCodeResponse;
 import com.mimecast.postcode.model.Result;
 
 public class Validator {
@@ -51,5 +49,11 @@ public class Validator {
         assertNotNull(codes.getCcg_id());
         assertNotNull(codes.getCed());
         assertNotNull(codes.getNuts());
+    }
+
+    public void validateQueryValue(String queryName, List<String> postCodeList) {
+        boolean queryMatch = postCodeList.stream().
+                anyMatch(p -> p.equalsIgnoreCase(queryName));
+        assertTrue(queryMatch);
     }
 }

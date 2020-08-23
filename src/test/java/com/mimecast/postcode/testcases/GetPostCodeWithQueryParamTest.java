@@ -12,7 +12,6 @@ import com.mimecast.postcode.common.Constants;
 import com.mimecast.postcode.common.ErrorMessage;
 import com.mimecast.postcode.common.Validator;
 import com.mimecast.postcode.model.GetPostCodeQueryParamResponse;
-import com.mimecast.postcode.model.GetPostCodeResponse;
 import com.mimecast.postcode.service.GetPostCodeService;
 import com.mimecast.postcode.service.RandomPostCodeService;
 

@@ -1,7 +1,5 @@
 package com.mimecast.postcode.model.post;
 
-import java.util.List;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.mimecast.postcode.model.Result;
@@ -11,7 +9,7 @@ import com.mimecast.postcode.model.Result;
 public class PostSubResultsForPostCode {
 
     public String query;
-    public List<Result> result;
+    public Result result;
 
     public String getQuery() {
         return query;
@@ -21,12 +19,11 @@ public class PostSubResultsForPostCode {
         this.query = query;
     }
 
-    public List<Result> getResult() {
+    public Result getResult() {
         return result;
     }
 
-    public void setResult(List<Result> result) {
+    public void setResult(Result result) {
         this.result = result;
     }
-
 }

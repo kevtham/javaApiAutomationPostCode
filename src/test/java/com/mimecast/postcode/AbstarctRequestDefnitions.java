@@ -66,6 +66,7 @@ public class AbstarctRequestDefnitions {
             request.addHeader("content-type", "application/json");
             request.setEntity(entityObj);
 
+            log.info("Get post request is ->" + request.toString());
             response = httpClient.execute(request);
         } catch (Exception e) {
             log.error("Error Occured on Post call =>" + e.getMessage());
