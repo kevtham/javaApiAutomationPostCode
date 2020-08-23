@@ -37,8 +37,8 @@ public class GetPostCodeTest extends GetPostCodeService {
         // assert
         assertNotNull(postCoderesponse);
         assertEquals(200, postCoderesponse.getStatus());
-        validate.validatePostCodeResults(postCoderesponse);
-        validate.validatePostCodes(postCoderesponse);
+        validate.validatePostCodeResults(postCoderesponse.getResult());
+        validate.validatePostCodes(postCoderesponse.getResult().getCodes());
     }
 
     /*
