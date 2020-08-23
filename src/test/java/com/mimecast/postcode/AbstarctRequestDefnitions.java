@@ -1,7 +1,6 @@
 package com.mimecast.postcode;
 
 import java.net.URI;
-
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.config.RequestConfig;
@@ -16,13 +15,13 @@ import org.junit.Before;
 public class AbstarctRequestDefnitions {
     final static Logger log = Logger.getLogger(AbstarctRequestDefnitions.class);
 
-    protected HttpClient httpClient;
-    final int timeout = 5;
+    protected HttpClient httpClient=null;
     HttpResponse response = null;
 
     @Before
     public void setUp() {
-        httpClient = HttpClientBuilder.create().setDefaultRequestConfig(setTimeOut()).build();
+        httpClient = HttpClientBuilder.create()
+                .setDefaultRequestConfig(requestConfig()).build();
     }
 
     protected HttpResponse getResponse(final String url) {
@@ -51,7 +50,6 @@ public class AbstarctRequestDefnitions {
             HttpGet getRequest = new HttpGet(uri);
             getRequest.addHeader("accept", "application/json");
 
-            
             response = httpClient.execute(getRequest);
         } catch (Exception e) {
             log.error("Error Occured on Get call using query param =>" + e.getMessage());
@@ -74,9 +72,7 @@ public class AbstarctRequestDefnitions {
         return response;
     }
 
-    protected RequestConfig setTimeOut() {
-        RequestConfig config = RequestConfig.custom().setConnectTimeout(timeout * 100)
-                .setConnectionRequestTimeout(timeout * 100).setSocketTimeout(timeout * 100).build();
-        return config;
+    public RequestConfig requestConfig() {
+        return RequestConfig.custom().setConnectTimeout(60000).setSocketTimeout(60000).build();
     }
 }

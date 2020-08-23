@@ -9,4 +9,5 @@ public class Constants {
     public static final String INVALID_POST_CODE="S56U00";
     public static final String FORWARD_SLASH="/";
     public static final String EMPTY_STRING="";
+    public static final String BAD_REQUEST="Invalid JSON query submitted.";
 }

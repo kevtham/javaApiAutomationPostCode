@@ -11,6 +11,7 @@ import org.apache.log4j.Logger;
 
 import com.google.gson.Gson;
 import com.mimecast.postcode.AbstarctRequestDefnitions;
+import com.mimecast.postcode.model.post.Geo;
 import com.mimecast.postcode.model.post.Postcodes;
 
 public class CreatePostCodeService extends AbstarctRequestDefnitions {
@@ -36,4 +37,18 @@ public class CreatePostCodeService extends AbstarctRequestDefnitions {
         return null;
     }
 
+    public String postPostalCode(String url, Geo geo) {
+        log.info("Attempting to call the postPostalCode Geo :::");
+
+        try {
+            StringEntity stringEntity = new StringEntity(gson.toJson(geo));
+
+            httpResponse = postResponse(url, stringEntity);
+
+            return EntityUtils.toString(httpResponse.getEntity());
+        } catch (ParseException | IOException e) {
+            log.info("Error occured on parsing the response : method postPostalCode Geo =>" + e.getMessage());
+        }
+        return null;
+    }
 }

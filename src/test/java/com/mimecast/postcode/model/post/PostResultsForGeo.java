@@ -9,8 +9,17 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PostResultsForGeo {
 
-    public int status;
-    public List<PostSubResultsForGeo> result;
+    private int status;
+    private List<PostSubResultsForGeo> result;
+    private String error;
+
+    public String getError() {
+        return error;
+    }
+
+    public void setError(String error) {
+        this.error = error;
+    }
 
     public int getStatus() {
         return status;

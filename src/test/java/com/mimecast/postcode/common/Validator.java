@@ -7,6 +7,7 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import com.mimecast.postcode.model.Codes;
 import com.mimecast.postcode.model.Result;
+import com.mimecast.postcode.model.post.Query;
 
 public class Validator {
     final static Logger log = Logger.getLogger(Validator.class);
@@ -55,5 +56,10 @@ public class Validator {
         boolean queryMatch = postCodeList.stream().
                 anyMatch(p -> p.equalsIgnoreCase(queryName));
         assertTrue(queryMatch);
+    }
+    
+    public void validateGeoQuery(Query query) {
+        assertNotNull(query.getLatitude());
+        assertNotNull(query.getLongitude());
     }
 }
