@@ -6,9 +6,9 @@ import org.apache.http.HttpResponse;
 import org.apache.http.ParseException;
 import org.apache.http.util.EntityUtils;
 import org.apache.log4j.Logger;
-import com.mimecast.postcode.AbstarctRequestDefnitions;
+import com.mimecast.postcode.AbstractClientDefinitions;
 
-public class GetPostCodeService extends AbstarctRequestDefnitions {
+public class GetPostCodeService extends AbstractClientDefinitions {
 
     final static Logger log = Logger.getLogger(GetPostCodeService.class);
     HttpResponse httpResponse = null;

@@ -12,8 +12,8 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.log4j.Logger;
 import org.junit.Before;
 
-public class AbstarctRequestDefnitions {
-    final static Logger log = Logger.getLogger(AbstarctRequestDefnitions.class);
+public class AbstractClientDefinitions {
+    final static Logger log = Logger.getLogger(AbstractClientDefinitions.class);
 
     protected HttpClient httpClient=null;
     HttpResponse response = null;

@@ -1,12 +1,8 @@
 package com.mimecast.postcode.common;
 
 import java.util.Random;
-import org.apache.log4j.Logger;
-import com.mimecast.postcode.AbstarctRequestDefnitions;
 
-public class RandomPostCodeUtil extends AbstarctRequestDefnitions {
-
-    final static Logger log = Logger.getLogger(RandomPostCodeUtil.class);
+public class RandomPostCodeUtil {
 
     /*
      * Below method returns the random postcode at runtime.

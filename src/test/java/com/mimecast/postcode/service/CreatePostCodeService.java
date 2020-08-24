@@ -10,11 +10,11 @@ import org.apache.http.util.EntityUtils;
 import org.apache.log4j.Logger;
 
 import com.google.gson.Gson;
-import com.mimecast.postcode.AbstarctRequestDefnitions;
+import com.mimecast.postcode.AbstractClientDefinitions;
 import com.mimecast.postcode.model.post.Geo;
 import com.mimecast.postcode.model.post.Postcodes;
 
-public class CreatePostCodeService extends AbstarctRequestDefnitions {
+public class CreatePostCodeService extends AbstractClientDefinitions {
 
     final static Logger log = Logger.getLogger(CreatePostCodeService.class);
     HttpResponse httpResponse = null;
