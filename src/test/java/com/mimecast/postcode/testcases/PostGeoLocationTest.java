@@ -1,6 +1,7 @@
 package com.mimecast.postcode.testcases;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -30,7 +31,7 @@ public class PostGeoLocationTest extends CreatePostCodeService {
     public void test_postGeo_one_object_success() {
 
         // Build Geo Object
-        geo.setGeolocations(buildGeoObject());
+        geo.setGeolocations(buildGeoOneObject());
 
         // construct url
         String response = postPostalCode(Constants.GET_URL, geo);
@@ -41,16 +42,23 @@ public class PostGeoLocationTest extends CreatePostCodeService {
 
         // assert
         assertNotNull(postCoderesponse);
+        assertFalse(postCoderesponse.getResult().isEmpty());
         assertEquals(200, postCoderesponse.getStatus());
         for (int firstResult = 0; firstResult < postCoderesponse.getResult().size(); firstResult++) {
             for (int subResult = 0; subResult < postCoderesponse.getResult().get(firstResult).getResult()
                     .size(); subResult++) {
-                validate.validatePostCodeResults(
-                        postCoderesponse.getResult().get(firstResult).getResult().get(subResult));
-                validate.validatePostCodes(
-                        postCoderesponse.getResult().get(firstResult).getResult().get(subResult).getCodes());
-                validate.validateGeoQuery(postCoderesponse.getResult().get(firstResult).getQuery());
-                assertNotNull(postCoderesponse.getResult().get(firstResult).getResult().get(subResult).getDistance());
+                if (null != postCoderesponse.getResult().get(firstResult).getResult()) {
+                    validate.validatePostCodeResults(
+                            postCoderesponse.getResult().get(firstResult).getResult().get(subResult));
+                    validate.validatePostCodes(
+                            postCoderesponse.getResult().get(firstResult).getResult().get(subResult).getCodes());
+                    validate.validateGeoQuery(postCoderesponse.getResult().get(firstResult).getQuery());
+                    assertNotNull(
+                            postCoderesponse.getResult().get(firstResult).getResult().get(subResult).getDistance());
+                } else {
+                    log.info("No data restults retreived for the Geo latitude ->"
+                            + postCoderesponse.getResult().get(firstResult).getQuery().getLatitude());
+                }
             }
 
         }
@@ -63,7 +71,7 @@ public class PostGeoLocationTest extends CreatePostCodeService {
     public void test_postGeo_many_object_success() {
 
         // Build Geo Object
-        geo.setGeolocations(buildGeoObject());
+        geo.setGeolocations(buildGeoObjects());
 
         // construct url
         String response = postPostalCode(Constants.GET_URL, geo);
@@ -74,16 +82,22 @@ public class PostGeoLocationTest extends CreatePostCodeService {
 
         // assert
         assertNotNull(postCoderesponse);
+        assertFalse(postCoderesponse.getResult().isEmpty());
         assertEquals(200, postCoderesponse.getStatus());
         for (int firstResult = 0; firstResult < postCoderesponse.getResult().size(); firstResult++) {
             for (int subResult = 0; subResult < postCoderesponse.getResult().get(firstResult).getResult()
                     .size(); subResult++) {
-                validate.validatePostCodeResults(
-                        postCoderesponse.getResult().get(firstResult).getResult().get(subResult));
-                validate.validatePostCodes(
-                        postCoderesponse.getResult().get(firstResult).getResult().get(subResult).getCodes());
-                validate.validateGeoQuery(postCoderesponse.getResult().get(firstResult).getQuery());
-                assertNotNull(postCoderesponse.getResult().get(firstResult).getResult().get(subResult).getDistance());
+                if (null != postCoderesponse.getResult().get(firstResult).getResult()) {
+                    validate.validatePostCodeResults(
+                            postCoderesponse.getResult().get(firstResult).getResult().get(subResult));
+                    validate.validatePostCodes(
+                            postCoderesponse.getResult().get(firstResult).getResult().get(subResult).getCodes());
+                    validate.validateGeoQuery(postCoderesponse.getResult().get(firstResult).getQuery());
+                    assertNotNull(postCoderesponse.getResult().get(firstResult).getResult().get(subResult).getDistance());
+                } else {
+                    log.info("No data restults retreived for the Geo latitude ->"
+                            + postCoderesponse.getResult().get(firstResult).getQuery().getLatitude());
+                }
             }
 
         }
@@ -132,7 +146,7 @@ public class PostGeoLocationTest extends CreatePostCodeService {
         assertTrue(postCoderesponse.getResult().isEmpty());
     }
 
-    private List<Geolocation> buildGeoObject() {
+    private List<Geolocation> buildGeoObjects() {
         ArrayList<Geolocation> geoList = new ArrayList<Geolocation>();
         Geolocation geoLocation = new Geolocation();
         geoLocation.setLatitude(50.7186356978817);

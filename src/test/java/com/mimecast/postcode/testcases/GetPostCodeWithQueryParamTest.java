@@ -1,26 +1,26 @@
 package com.mimecast.postcode.testcases;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
 import org.apache.log4j.Logger;
 import org.junit.Test;
-
 import com.google.gson.Gson;
 import com.mimecast.postcode.common.Constants;
 import com.mimecast.postcode.common.ErrorMessage;
+import com.mimecast.postcode.common.RandomPostCodeUtil;
 import com.mimecast.postcode.common.Validator;
 import com.mimecast.postcode.model.GetPostCodeQueryParamResponse;
 import com.mimecast.postcode.service.GetPostCodeService;
-import com.mimecast.postcode.service.RandomPostCodeService;
 
 public class GetPostCodeWithQueryParamTest extends GetPostCodeService {
 
     final static Logger log = Logger.getLogger(GetPostCodeWithQueryParamTest.class);
 
     Validator validate = new Validator();
-    RandomPostCodeService randomPostService = new RandomPostCodeService();
+    RandomPostCodeUtil randomPostService = new RandomPostCodeUtil();
 
     /*
      * Below test validate the successful scenario.
@@ -38,9 +38,12 @@ public class GetPostCodeWithQueryParamTest extends GetPostCodeService {
 
         // assert
         assertNotNull(postCoderesponse);
+        assertFalse(postCoderesponse.getResult().isEmpty());
         assertEquals(200, postCoderesponse.getStatus());
-        validate.validatePostCodeResults(postCoderesponse.getResult().get(0));
-        validate.validatePostCodes(postCoderesponse.getResult().get(0).getCodes());
+        for (int i = 0; i < postCoderesponse.getResult().size(); i++) {
+            validate.validatePostCodeResults(postCoderesponse.getResult().get(i));
+            validate.validatePostCodes(postCoderesponse.getResult().get(i).getCodes());
+        }
     }
 
     /*

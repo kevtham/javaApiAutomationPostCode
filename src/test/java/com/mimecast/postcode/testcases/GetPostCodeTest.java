@@ -9,16 +9,16 @@ import org.junit.Test;
 import com.google.gson.Gson;
 import com.mimecast.postcode.common.Constants;
 import com.mimecast.postcode.common.ErrorMessage;
+import com.mimecast.postcode.common.RandomPostCodeUtil;
 import com.mimecast.postcode.common.Validator;
 import com.mimecast.postcode.model.GetPostCodeResponse;
 import com.mimecast.postcode.service.GetPostCodeService;
-import com.mimecast.postcode.service.RandomPostCodeService;
 
 public class GetPostCodeTest extends GetPostCodeService {
 
     final static Logger log = Logger.getLogger(GetPostCodeTest.class);
     Validator validate = new Validator();
-    RandomPostCodeService randomPostService = new RandomPostCodeService();
+    RandomPostCodeUtil randomPostService = new RandomPostCodeUtil();
 
     /*
      * Below test validate the successful scenario.

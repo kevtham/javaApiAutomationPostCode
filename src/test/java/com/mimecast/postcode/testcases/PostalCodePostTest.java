@@ -1,6 +1,7 @@
 package com.mimecast.postcode.testcases;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
@@ -13,25 +14,23 @@ import com.mimecast.postcode.common.Constants;
 import com.mimecast.postcode.common.Validator;
 import com.mimecast.postcode.model.post.PostResultsForPostCode;
 import com.mimecast.postcode.service.CreatePostCodeService;
-import com.mimecast.postcode.service.RandomPostCodeService;
 
 public class PostalCodePostTest extends CreatePostCodeService {
 
     final static Logger log = Logger.getLogger(PostalCodePostTest.class);
 
     Validator validate = new Validator();
-    RandomPostCodeService randomPostService = new RandomPostCodeService();
 
     /*
      * Below test validate the successful scenario.
      */
     @Test
     public void test_postPostalcode_success() {
-        ArrayList<String> postcopdeList = new ArrayList<String>();
-        postcopdeList.add(randomPostService.getRandomPostalCode());
+        ArrayList<String> postcodeList = new ArrayList<String>();
+        postcodeList.add("S56UR");
 
         // construct url and render random post Code
-        String response = postPostalCode(Constants.GET_URL, postcopdeList);
+        String response = postPostalCode(Constants.GET_URL, postcodeList);
 
         // parse
         PostResultsForPostCode postCoderesponse = new Gson().fromJson(response, PostResultsForPostCode.class);
@@ -39,10 +38,13 @@ public class PostalCodePostTest extends CreatePostCodeService {
 
         // assert
         assertNotNull(postCoderesponse);
+        assertFalse(postCoderesponse.getResult().isEmpty());
         assertEquals(200, postCoderesponse.getStatus());
+
         for (int i = 0; i < postCoderesponse.getResult().size(); i++) {
             validate.validatePostCodeResults(postCoderesponse.getResult().get(i).getResult());
             validate.validatePostCodes(postCoderesponse.getResult().get(i).getResult().getCodes());
+
         }
     }
 
@@ -54,9 +56,8 @@ public class PostalCodePostTest extends CreatePostCodeService {
         ArrayList<String> postcodeList = new ArrayList<String>();
 
         // Add 3 post codes in list
-        postcodeList.add(randomPostService.getRandomPostalCode());
-        postcodeList.add(randomPostService.getRandomPostalCode());
-        postcodeList.add(randomPostService.getRandomPostalCode());
+        postcodeList.add("S56UR");
+        postcodeList.add("BH6 5JZ");
 
         // construct url and render random post Code
         String response = postPostalCode(Constants.GET_URL, postcodeList);
@@ -67,11 +68,13 @@ public class PostalCodePostTest extends CreatePostCodeService {
 
         // assert
         assertNotNull(postCoderesponse);
+        assertFalse(postCoderesponse.getResult().isEmpty());
         assertEquals(200, postCoderesponse.getStatus());
         for (int i = 0; i < postCoderesponse.getResult().size(); i++) {
             validate.validatePostCodeResults(postCoderesponse.getResult().get(i).getResult());
             validate.validatePostCodes(postCoderesponse.getResult().get(i).getResult().getCodes());
             validate.validateQueryValue(postCoderesponse.getResult().get(i).getQuery(), postcodeList);
+
         }
     }
 
@@ -94,10 +97,16 @@ public class PostalCodePostTest extends CreatePostCodeService {
 
         // assert
         assertNotNull(postCoderesponse);
+        assertFalse(postCoderesponse.getResult().isEmpty());
         assertEquals(200, postCoderesponse.getStatus());
         for (int i = 0; i < postCoderesponse.getResult().size(); i++) {
-            assertNull(postCoderesponse.getResult().get(i).getResult());
-            validate.validateQueryValue(postCoderesponse.getResult().get(i).getQuery(), postcodeList);
+            if (null != postCoderesponse.getResult().get(i).getResult()) {
+                assertNull(postCoderesponse.getResult().get(i).getResult());
+                validate.validateQueryValue(postCoderesponse.getResult().get(i).getQuery(), postcodeList);
+            } else {
+                log.info("No data restults retreived for the postCode ->"
+                        + postCoderesponse.getResult().get(i).getQuery());
+            }
         }
     }
 

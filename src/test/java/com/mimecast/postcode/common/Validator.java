@@ -15,51 +15,67 @@ public class Validator {
     public void validatePostCodeResults(Result results) {
         log.info("Attempting to validate the PostCodeResults");
 
-        assertNotNull(results.getPostcode());
-        assertNotNull(results.getQuality());
-        assertNotNull(results.getEastings());
-        assertNotNull(results.getNorthings());
-        assertNotNull(results.getCountry());
-        assertNotNull(results.getNhs_ha());
-        assertNotNull(results.getLongitude());
-        assertNotNull(results.getLatitude());
-        assertNotNull(results.getEuropean_electoral_region());
-        assertNotNull(results.getPrimary_care_trust());
-        assertTrue(null != results.getRegion() || null == results.getRegion());
-        assertNotNull(results.getLsoa());
-        assertNotNull(results.getMsoa());
-        assertNotNull(results.getIncode());
-        assertNotNull(results.getOutcode());
-        assertNotNull(results.getParliamentary_constituency());
-        assertNotNull(results.getParish());
-        assertNotNull(results.getAdmin_district());
-        assertNotNull(results.getAdmin_ward());
-        assertNotNull(results.getCcg());
-        assertNotNull(results.getNuts());
+        if(null!=results) {
+            assertNotNull(results.getPostcode());
+            assertNotNull(results.getQuality());
+            assertNotNull(results.getEastings());
+            assertNotNull(results.getNorthings());
+            assertNotNull(results.getCountry());
+            assertNotNull(results.getNhs_ha());
+            assertNotNull(results.getLongitude());
+            assertNotNull(results.getLatitude());
+            assertNotNull(results.getEuropean_electoral_region());
+            assertNotNull(results.getPrimary_care_trust());
+            assertTrue(null != results.getRegion() || null == results.getRegion());
+            assertNotNull(results.getLsoa());
+            assertNotNull(results.getMsoa());
+            assertNotNull(results.getIncode());
+            assertNotNull(results.getOutcode());
+            assertNotNull(results.getParliamentary_constituency());
+            assertTrue(null != results.getParish() || null == results.getParish());
+            assertNotNull(results.getAdmin_district());
+            assertNotNull(results.getAdmin_ward());
+            assertNotNull(results.getCcg());
+            assertNotNull(results.getNuts());
+        } else {
+            log.info("Result dont have values ***");
+        }
     }
 
     public void validatePostCodes(Codes codes) {
         log.info("Attempting to validate the PostCodes");
 
-        assertNotNull(codes.getAdmin_district());
-        assertNotNull(codes.getAdmin_county());
-        assertNotNull(codes.getAdmin_ward());
-        assertNotNull(codes.getParliamentary_constituency());
-        assertNotNull(codes.getParish());
-        assertNotNull(codes.getCcg());
-        assertNotNull(codes.getCcg_id());
-        assertNotNull(codes.getCed());
-        assertNotNull(codes.getNuts());
+        if(null != codes) {
+            assertNotNull(codes.getAdmin_district());
+            assertNotNull(codes.getAdmin_county());
+            assertNotNull(codes.getAdmin_ward());
+            assertNotNull(codes.getParliamentary_constituency());
+            assertNotNull(codes.getParish());
+            assertNotNull(codes.getCcg());
+            assertNotNull(codes.getCcg_id());
+            assertNotNull(codes.getCed());
+            assertNotNull(codes.getNuts());
+        } else {
+            log.info("Codes dont have values ***");
+        }
     }
 
     public void validateQueryValue(String queryName, List<String> postCodeList) {
-        boolean queryMatch = postCodeList.stream().
-                anyMatch(p -> p.equalsIgnoreCase(queryName));
-        assertTrue(queryMatch);
+        if(null!=queryName) {
+            boolean queryMatch = postCodeList.stream().
+                    anyMatch(p -> p.equalsIgnoreCase(queryName));
+            assertTrue(queryMatch);
+        } else {
+            log.info("postCode Query dont have values ***");
+        }
     }
     
     public void validateGeoQuery(Query query) {
-        assertNotNull(query.getLatitude());
-        assertNotNull(query.getLongitude());
+        if(null !=query) {
+            assertNotNull(query.getLatitude());
+            assertNotNull(query.getLongitude());
+        }else {
+            log.info("Geo Query dont have values ***");
+        }
     }
 }

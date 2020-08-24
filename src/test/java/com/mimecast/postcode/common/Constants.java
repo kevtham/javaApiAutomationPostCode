@@ -10,4 +10,5 @@ public class Constants {
     public static final String FORWARD_SLASH="/";
     public static final String EMPTY_STRING="";
     public static final String BAD_REQUEST="Invalid JSON query submitted.";
+    public static final String[] RANDOM_POSTCODES={"ME7 1HN", "S56UR", "EX20 1SD", "BH6 5JZ", "SS5 6JE", "M45 7EY","B91 3JW"};
 }
