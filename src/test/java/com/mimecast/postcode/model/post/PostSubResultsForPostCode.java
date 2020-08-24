@@ -8,8 +8,8 @@ import com.mimecast.postcode.model.Result;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PostSubResultsForPostCode {
 
-    public String query;
-    public Result result;
+    private String query;
+    private Result result;
 
     public String getQuery() {
         return query;

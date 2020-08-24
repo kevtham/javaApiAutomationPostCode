@@ -9,8 +9,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PostResultsForPostCode {
 
-    public int status;
-    public List<PostSubResultsForPostCode> result;
+    private int status;
+    private List<PostSubResultsForPostCode> result;
 
     public int getStatus() {
         return status;

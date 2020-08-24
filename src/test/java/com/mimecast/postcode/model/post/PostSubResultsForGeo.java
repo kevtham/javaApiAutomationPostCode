@@ -10,8 +10,8 @@ import com.mimecast.postcode.model.Result;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class PostSubResultsForGeo {
 
-    public Query query;
-    public List<Result> result;
+    private Query query;
+    private List<Result> result;
 
     public Query getQuery() {
         return query;

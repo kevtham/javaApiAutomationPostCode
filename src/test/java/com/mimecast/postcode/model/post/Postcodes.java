@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Postcodes {
 
-    public List<String> postcodes;
+    private List<String> postcodes;
 
     public List<String> getPostcodes() {
         return postcodes;
