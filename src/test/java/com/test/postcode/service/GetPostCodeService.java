@@ -1,4 +1,4 @@
-package com.mimecast.postcode.service;
+package com.test.postcode.service;
 
 import java.io.IOException;
 
@@ -6,7 +6,8 @@ import org.apache.http.HttpResponse;
 import org.apache.http.ParseException;
 import org.apache.http.util.EntityUtils;
 import org.apache.log4j.Logger;
-import com.mimecast.postcode.AbstractClientDefinitions;
+
+import com.test.postcode.AbstractClientDefinitions;
 
 public class GetPostCodeService extends AbstractClientDefinitions {
 

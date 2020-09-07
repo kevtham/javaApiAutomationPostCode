@@ -1,4 +1,4 @@
-package com.mimecast.postcode.common;
+package com.test.postcode.common;
 
 import java.util.Random;
 

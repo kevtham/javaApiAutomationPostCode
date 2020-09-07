@@ -1,4 +1,4 @@
-package com.mimecast.postcode;
+package com.test.postcode;
 
 import java.net.URI;
 import org.apache.http.HttpResponse;

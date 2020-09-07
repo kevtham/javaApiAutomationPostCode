@@ -1,4 +1,4 @@
-package com.mimecast.postcode.model;
+package com.test.postcode.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;

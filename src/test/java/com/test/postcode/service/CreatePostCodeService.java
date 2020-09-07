@@ -1,4 +1,4 @@
-package com.mimecast.postcode.service;
+package com.test.postcode.service;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,9 +10,9 @@ import org.apache.http.util.EntityUtils;
 import org.apache.log4j.Logger;
 
 import com.google.gson.Gson;
-import com.mimecast.postcode.AbstractClientDefinitions;
-import com.mimecast.postcode.model.post.Geo;
-import com.mimecast.postcode.model.post.Postcodes;
+import com.test.postcode.AbstractClientDefinitions;
+import com.test.postcode.model.post.Geo;
+import com.test.postcode.model.post.Postcodes;
 
 public class CreatePostCodeService extends AbstractClientDefinitions {
 

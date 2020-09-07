@@ -1,4 +1,4 @@
-package com.mimecast.postcode.testcases;
+package com.test.postcode.testcases;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
@@ -10,10 +10,10 @@ import java.util.ArrayList;
 import org.apache.log4j.Logger;
 import org.junit.Test;
 import com.google.gson.Gson;
-import com.mimecast.postcode.common.Constants;
-import com.mimecast.postcode.common.Validator;
-import com.mimecast.postcode.model.post.PostResultsForPostCode;
-import com.mimecast.postcode.service.CreatePostCodeService;
+import com.test.postcode.common.Constants;
+import com.test.postcode.common.Validator;
+import com.test.postcode.model.post.PostResultsForPostCode;
+import com.test.postcode.service.CreatePostCodeService;
 
 public class PostalCodePostTest extends CreatePostCodeService {
 

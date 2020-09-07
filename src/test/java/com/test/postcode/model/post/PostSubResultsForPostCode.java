@@ -1,8 +1,8 @@
-package com.mimecast.postcode.model.post;
+package com.test.postcode.model.post;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.mimecast.postcode.model.Result;
+import com.test.postcode.model.Result;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)

@@ -1,4 +1,4 @@
-package com.mimecast.postcode.model.post;
+package com.test.postcode.model.post;
 
 import java.util.List;
 

@@ -1,13 +1,14 @@
-package com.mimecast.postcode.common;
+package com.test.postcode.common;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 import org.apache.log4j.Logger;
-import com.mimecast.postcode.model.Codes;
-import com.mimecast.postcode.model.Result;
-import com.mimecast.postcode.model.post.Query;
+
+import com.test.postcode.model.Codes;
+import com.test.postcode.model.Result;
+import com.test.postcode.model.post.Query;
 
 public class Validator {
     final static Logger log = Logger.getLogger(Validator.class);
