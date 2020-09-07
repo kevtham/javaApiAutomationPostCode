@@ -1,4 +1,4 @@
-# PostCode Api testing for mimecast test
+# PostCode Api testing
 
 # Summary
 This automation test validates the postcode api end point for GET & POST calls.
